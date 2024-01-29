@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+import sys
+from math import sqrt
+
+if len(sys.argv) != 2:
+    print('Usage: factors <file>')
+    sys.exit(1)
+
+def is_prime(num):
+    if num == 2:
+        return 1
+    if num == 9:
+        return 0
+    if n > 10:
+        if ((n % 10) * (n % 10)) == n:
+            return 0
+    return num % 2 == 1
+
+file =  open(sys.argv[1], "r")
+
+for line in file:
+    number = int(line)
+    n = int(sqrt(number)) + 1
+    for p in range(2, n):
+        if number % p == 0:
+            if is_prime(p):
+                q = number // p
+                if is_prime(q):
+                    print(f"{number}={q}*{p}")
+                    break
+        elif number % n == 0:
+            if is_prime(n):
+                q = number // n
+                if is_prime(q):
+                    print(f"{number}={q}*{n}")
+                    break
+        n -= 1
+file.close()
